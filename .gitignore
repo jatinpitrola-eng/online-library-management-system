@@ -2,3 +2,5 @@
 Thumbs.db
 *.zip
 assets/
+data/*.db
+vendor/

@@ -9,6 +9,11 @@ if (session_status() === PHP_SESSION_NONE) {
 
 // Base path for includes
 $base_path = isset($base_path) ? $base_path : '';
+
+// Auto-redirect to setup if SQLite tables don't exist
+if (isset($db_is_sqlite) && $db_is_sqlite && basename($_SERVER['PHP_SELF']) !== 'setup.php') {
+    try { @$conn->query("SELECT 1 FROM users LIMIT 1"); } catch (Exception $e) { header('Location: ' . $base_path . 'setup.php'); exit(); }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">

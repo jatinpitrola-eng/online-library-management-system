@@ -34,7 +34,8 @@ try {
     $total_students = $stmt->fetch()['total'];
 
     // Overdue books
-    $stmt = $conn->query("SELECT COUNT(*) as total FROM issued_books WHERE status = 'issued' AND due_date < CURDATE()");
+    $overdue_fn = $db_is_sqlite ? "date('now')" : 'CURDATE()';
+    $stmt = $conn->query("SELECT COUNT(*) as total FROM issued_books WHERE status = 'issued' AND due_date < $overdue_fn");
     $overdue_books = $stmt->fetch()['total'];
 
     // Recent issued books
