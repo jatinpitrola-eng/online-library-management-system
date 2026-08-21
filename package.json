@@ -1,0 +1,10 @@
+{
+  "name": "online-library-ms",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "php -S 0.0.0.0:$PORT"
+  },
+  "engines": {
+    "node": "18.x"
+  }
+}
